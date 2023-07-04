@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  item-app:
+    image: mukhoiran/item-app:v1  # Nama dan tag Docker image untuk service item-app
+    ports:
+      - 80:8080  # Port mapping dari host ke container
+    depends_on:
+      - item-db  # Tergantung pada service item-db
+    restart: always  # Restart container secara otomatis jika terhenti
+
+  item-db:
+    image: mongo:3  # Nama dan versi Docker image untuk service item-db
+    volumes:
+      - app-db:/data/db  # Volume yang digunakan oleh service item-db
+    restart: always  # Restart container secara otomatis jika terhenti
+
+volumes:
+  app-db:  # Nama volume app-db yang digunakan oleh service item-db
