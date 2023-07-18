@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karsajobs-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karsajobs
+  template:
+    metadata:
+      labels:
+        app: karsajobs
+    spec:
+      containers:
+        - name: karsajobs
+          image: mukhoiran/karsajobs:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_HOST
+              value: mongodb-service
+            - name: MONGO_USER
+              value: admin
+            - name: MONGO_PASS
+              value: supersecretpassword
+

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: karsajobs-mongodb-service
+  labels:
+    app: karsajobs-mongodb
+spec:
+  selector:
+    app: karsajobs-mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
